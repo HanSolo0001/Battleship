@@ -1,0 +1,18 @@
+﻿@model Battleship.Models.GameStartViewModel
+
+@{
+    ViewBag.Title = "Start Your Game";
+}
+
+<h2>Start Your Game</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.GameId)
+    <div>
+        @Html.LabelFor(m => m.GameName)
+        @Html.EditorFor(m => m.GameName)
+        @Html.ValidationMessageFor(m => m.GameName)
+    </div>
+
+    <input type="submit" value="Start Your Game" />
+}
