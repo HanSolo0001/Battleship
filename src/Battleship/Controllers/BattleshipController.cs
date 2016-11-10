@@ -3,33 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Battleship.Models;
 
 namespace Battleship.Controllers
 {
     public class BattleshipController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
-            // If Start button is clicked then return View of the Start.cshtml file
-
-            return View();
+            var model = new GameStartViewModel { GameId = Guid.NewGuid() };
+            return View(model);
         }
-    }
 
-    public class GameBoardController : Controller
-    {
-        public ActionResult Start()
+        [HttpPost]
+        public ActionResult Index(GameStartViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(model);
+            //TODO Save the game to a database
+            return RedirectToAction("PlacePieces", new { id = model.GameId });
+        }
 
-            // Ships will render in from the model and be displayed to the view
-            // Player 1 start by clicking a spot on the gameboard within gameboard limits
-            // Code will run to check to see if either the shot hit or missed
-            // The hit counter will then be recorded as either a miss or a hit
-            // Code will run to make AI randomly guess a spot
-            // AI's hit or miss counter will be recorded 
-            // Gameboard will update with new hit and miss counter spots, and then it will be player 1's turn again
-            // Run through gameboard loop till either AI or player 1 sinks all the opposing ships
+        [HttpGet]
+        public ActionResult PlacePieces(Guid id)
+        {
+            //TODO Load the game from the database to make sure it is a real game and ready to place pieces
+            var model = new PlacePiecesViewModel
+            {
+                GameId = id,
+                //For this example I am only using one piece
+                Pieces = new List<PieceViewModel>
+                {
+                    new PieceViewModel()
+                }
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult PlacePieces(PlacePiecesViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            return RedirectToAction("StartGame", new { id = model.GameId });
+        }
+
+        [HttpGet]
+        public ActionResult StartGame(Guid id)
+        {
+            //TODO Make sure all of the game pieces have been placed, send back if not
+
+            return View();
         }
     }
 }

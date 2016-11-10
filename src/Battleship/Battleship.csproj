@@ -205,8 +205,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Index.cshtml" />
-    <Content Include="Views\Start.cshtml" />
+    <Content Include="Views\Battleship\Index.cshtml" />
+    <Content Include="Views\Battleship\StartGame.cshtml" />
+    <Content Include="Views\Battleship\PlacePieces.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

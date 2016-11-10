@@ -16,19 +16,14 @@ namespace Battleship.Models
         [Range(1, 10)]
         public int? Y { get; set; }
 
-        [Required]
-        public int PatrolShip { get; set; } = 2;
+        public const int PatrolShip = 2;
 
-        [Required]
-        public int CruiserShip { get; set; } = 3;
+        public const int CruiserShip = 3;
 
-        [Required]
-        public int SubmarineShip { get; set; } = 3;
+        public const int SubmarineShip = 3;
 
-        [Required]
-        public int BattleshipShip { get; set; } = 4;
+        public const int BattleshipShip = 4;
 
-        [Required]
-        public int CarrierShip { get; set; } = 5;
+        public const int CarrierShip = 5;
     }
 }
