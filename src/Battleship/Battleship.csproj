@@ -172,13 +172,6 @@
     <Compile Include="Models\GameViewModelBase.cs" />
     <Compile Include="Models\PieceViewModel.cs" />
     <Compile Include="Models\PlacePiecesViewModel.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Ship Classes\Battleship.cs" />
-    <Compile Include="Models\Ship Classes\Carrier.cs" />
-    <Compile Include="Models\Ship Classes\CruiserShip.cs" />
-    <Compile Include="Models\Ship Classes\PatrolShip.cs" />
-    <Compile Include="Models\Ship Classes\Ship.cs" />
-    <Compile Include="Models\Ship Classes\Submarine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
