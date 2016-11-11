@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.form{
+    display: block;
+    float: left;
+}
+
+#grid-image{
+    display: block;
+    float: right;
+}

@@ -4,23 +4,30 @@
     ViewBag.Title = "Place Pieces";
 }
 
-@using (Html.BeginForm())
-{
-    // Iterate through the Ship pieces and display their names, and choose the X and Y values for placement of the ship pieces
-    @Html.HiddenFor(m => m.GameId)
-    for (int i = 0; i < Model.Pieces.Count; i++)
+<div class="col-md-6" id="form">
+    @using (Html.BeginForm())
     {
-        <h2>Piece @Model.Pieces[i].Name</h2>
-        //TODO find an HTML way to do this
-        <div>
-            X: @Html.EditorFor(m => m.Pieces[i].X)
-            Y: @Html.EditorFor(m => m.Pieces[i].Y)
-        </div>
-        // Show Ship Orientation through a drop down list
-        <div>
-            Orientation: @Html.DropDownListFor(m => m.Orientation, ViewBag.Orientations)
-        </div>
+
+        // Iterate through the Ship pieces and display their names, and choose the X and Y values for placement of the ship pieces
+        @Html.HiddenFor(m => m.GameId)
+        for (int i = 0; i < Model.Pieces.Count; i++)
+        {
+            <h2>Piece @Model.Pieces[i].Name</h2>
+            //TODO find an HTML way to do this
+            <div>
+                X: @Html.EditorFor(m => m.Pieces[i].X)
+                Y: @Html.EditorFor(m => m.Pieces[i].Y)
+            </div>
+            // Show Ship Orientation through a drop down list
+            <div>
+                @*Orientation: @Html.DropDownListFor(m => m.Orientation, ViewBag.Orientations)*@
+            </div>
+        }
+
+        @Html.ValidationSummary()
+        <input type="submit" value="Place Pieces" />
     }
-    @Html.ValidationSummary()
-    <input type="submit" value="Place Pieces" />
-}
+</div>
+<div>
+    <img src="~/Images/Battleship_Visual_Grid.png" class="col-md-6" id="grid-image" />
+</div>
