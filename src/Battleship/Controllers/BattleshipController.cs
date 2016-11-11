@@ -35,9 +35,16 @@ namespace Battleship.Controllers
                 //For this example I am only using one piece
                 Pieces = new List<PieceViewModel>
                 {
-                    new PieceViewModel()
+                    new PieceViewModel(ShipEnum.PatrolShip),
+                    new PieceViewModel(ShipEnum.CruiserShip),
+                    new PieceViewModel(ShipEnum.Submarine),
+                    new PieceViewModel(ShipEnum.Battleship),
+                    new PieceViewModel(ShipEnum.CarrierShip)
                 }
             };
+            ViewBag.Orientations = Enum.GetValues(typeof(ShipOrientationEnum));
+
+
             return View(model);
         }
 

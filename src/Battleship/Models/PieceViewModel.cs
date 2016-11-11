@@ -8,6 +8,33 @@ namespace Battleship.Models
 {
     public class PieceViewModel
     {
+        public PieceViewModel(ShipEnum ship)
+        {
+            switch(ship)
+            {
+                case (ShipEnum.PatrolShip):
+                    Name = PatrolShipName;
+                    Size = PatrolShipSize;
+                    break;
+                case (ShipEnum.CruiserShip):
+                    Name = CruiserShipName;
+                    Size = CruiserShipSize;
+                    break;
+                case (ShipEnum.Submarine):
+                    Name = SubmarineName;
+                    Size = SubmarineSize;
+                    break;
+                case (ShipEnum.Battleship):
+                    Name = BattleshipName;
+                    Size = BattleshipSize;
+                    break;
+                case (ShipEnum.CarrierShip):
+                    Name = CarrierShipName;
+                    Size = CarrierShipSize;
+                    break;
+            }
+        }
+
         [Required]
         [Range(1, 10)]
         public int? X { get; set; }
@@ -16,14 +43,64 @@ namespace Battleship.Models
         [Range(1, 10)]
         public int? Y { get; set; }
 
-        public const int PatrolShip = 2;
+        [Required]
+        public ShipOrientationEnum Orientation { get; set; }
 
-        public const int CruiserShip = 3;
+        public string Name { get; set; }
 
-        public const int SubmarineShip = 3;
+        public int Size { get; set; }
 
-        public const int BattleshipShip = 4;
+        // Constants for Ship sizes
 
-        public const int CarrierShip = 5;
+        public const int PatrolShipSize = 2;
+
+        public const int CruiserShipSize = 3;
+
+        public const int SubmarineSize = 3;
+
+        public const int BattleshipSize = 4;
+
+        public const int CarrierShipSize = 5;
+
+        // Constants for Ship names
+
+        public const String PatrolShipName = "Patrol Ship";
+
+        public const String CruiserShipName = "Cruiser Ship";
+
+        public const String SubmarineName = "Submarine";
+
+        public const String BattleshipName = "Battleship";
+
+        public const String CarrierShipName = "Carrier";
+
+    }
+
+    // Declare ship enum so it can easily be called anywhere
+
+    public enum ShipEnum
+    {
+        PatrolShip,
+
+        CruiserShip,
+
+        Submarine,
+
+        Battleship,
+
+        CarrierShip
+    }
+
+    // Declare ship orientation enum so it can easily be called anywhere
+
+    public enum ShipOrientationEnum
+    {
+        North,
+
+        East,
+
+        South,
+
+        West
     }
 }

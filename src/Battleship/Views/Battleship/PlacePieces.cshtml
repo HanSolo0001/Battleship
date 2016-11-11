@@ -1,4 +1,4 @@
-﻿@model GameExampleMVC.Models.PlacePiecesViewModel
+﻿@model Battleship.Models.PlacePiecesViewModel
 
 @{
     ViewBag.Title = "Place Pieces";
@@ -9,11 +9,14 @@
     @Html.HiddenFor(m => m.GameId)
     for (int i = 0; i < Model.Pieces.Count; i++)
     {
-        <h2>Piece @i</h2>
+        <h2>Piece @Model.Pieces[i].Name</h2>
         //TODO find an HTML way to do this
         <div>
             X: @Html.EditorFor(m => m.Pieces[i].X)
             Y: @Html.EditorFor(m => m.Pieces[i].Y)
+        </div>
+        <div>
+            Orientation: @Html.DropDownListFor(m => m.Orientation, ViewBag.Orientations)
         </div>
     }
     @Html.ValidationSummary()
