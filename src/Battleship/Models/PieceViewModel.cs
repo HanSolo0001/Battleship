@@ -10,6 +10,7 @@ namespace Battleship.Models
     {
         public PieceViewModel(ShipEnum ship)
         {
+            // Place the different ships using an enum and a switch statement
             switch(ship)
             {
                 case (ShipEnum.PatrolShip):

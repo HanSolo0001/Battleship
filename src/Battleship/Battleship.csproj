@@ -167,7 +167,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameBoard.cs" />
     <Compile Include="Models\GameStartViewModel.cs" />
     <Compile Include="Models\GameViewModelBase.cs" />
     <Compile Include="Models\PieceViewModel.cs" />

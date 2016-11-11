@@ -32,7 +32,7 @@ namespace Battleship.Controllers
             var model = new PlacePiecesViewModel
             {
                 GameId = id,
-                //For this example I am only using one piece
+                // Display ships on the PlacePieces.cshtml View
                 Pieces = new List<PieceViewModel>
                 {
                     new PieceViewModel(ShipEnum.PatrolShip),

@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm())
 {
+    // Iterate through the Ship pieces and display their names, and choose the X and Y values for placement of the ship pieces
     @Html.HiddenFor(m => m.GameId)
     for (int i = 0; i < Model.Pieces.Count; i++)
     {
@@ -15,6 +16,7 @@
             X: @Html.EditorFor(m => m.Pieces[i].X)
             Y: @Html.EditorFor(m => m.Pieces[i].Y)
         </div>
+        // Show Ship Orientation through a drop down list
         <div>
             Orientation: @Html.DropDownListFor(m => m.Orientation, ViewBag.Orientations)
         </div>
