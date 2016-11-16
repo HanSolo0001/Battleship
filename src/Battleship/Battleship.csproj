@@ -167,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GameBoard.cs" />
     <Compile Include="Models\GameStartViewModel.cs" />
     <Compile Include="Models\GameViewModelBase.cs" />
     <Compile Include="Models\PieceViewModel.cs" />
@@ -180,6 +181,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\10X10GRID_Battleship.jpg" />
     <Content Include="Images\Battleship_Visual_Grid.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

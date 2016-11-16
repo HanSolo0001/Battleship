@@ -32,7 +32,7 @@ namespace Battleship.Controllers
             var model = new PlacePiecesViewModel
             {
                 GameId = id,
-                // Display ships on the PlacePieces.cshtml View
+                // Display ships on the PlacePieces.cshtml View (page to let you choose X, Y, and orientation for ships)
                 Pieces = new List<PieceViewModel>
                 {
                     new PieceViewModel(ShipEnum.PatrolShip),
