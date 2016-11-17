@@ -64,5 +64,21 @@ namespace Battleship.Controllers
 
             return View();
         }
+
+        //public ActionResult PlayGame
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+                    // use controller to play the game and loop through game logic
+                    // player 1 will fire
+                    // check to see if is hit or miss and record it so it cannot be guessed again
+                    // report this information back to player
+                    // let player 1 end turn
+                    // let AI make its turn / player 1 cannot play at this point
+                    // mark on player 1 side either a hit or miss from AI and record it so AI cannot guess these coordinates again
+                    // end AI turn
+        //    }
+        //}
+
     }
 }

@@ -104,4 +104,5 @@ namespace Battleship.Models
 
         West
     }
+
 }
