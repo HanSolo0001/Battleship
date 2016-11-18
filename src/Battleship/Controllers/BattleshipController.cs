@@ -28,7 +28,8 @@ namespace Battleship.Controllers
                 gameData.Games.Add(game);
                 gameData.SaveChanges();
             }
-                return RedirectToAction("PlacePieces", new { id = model.GameId });
+           
+            return RedirectToAction("PlacePieces", new { id = model.GameId });
         }
 
         [HttpGet]
@@ -53,6 +54,14 @@ namespace Battleship.Controllers
                 }
             };
             ViewBag.Orientations = Enum.GetValues(typeof(ShipOrientationEnum));
+
+            //// Save pieces so it can be POSTed to the StartGame action
+            //using (var gameData = new MyGameDatabase())
+            //{
+            //    var game = new Game { Ships = model.Pieces };
+            //    gameData.Games.Add(game);
+            //    gameData.SaveChanges();
+            //}
 
             return View(model);
         }
