@@ -5,8 +5,9 @@ using System.Web;
 
 namespace Battleship.Models
 {
-    public class PlacePiecesViewModel : GameViewModelBase
+    public class PlayerMove
     {
-        public List<PieceViewModel> Pieces { get; set; }
+        public int TargetX { get; set; }
+        public int TargetY { get; set; }
     }
 }

@@ -22,13 +22,23 @@ namespace Battleship.Controllers
             if (!ModelState.IsValid)
                 return View(model);
             //TODO Save the game to a database
-            return RedirectToAction("PlacePieces", new { id = model.GameId });
+            using (var gameData = new MyGameDatabase())
+            {
+                var game = new Game { GameName = model.GameName, GameId = model.GameId.Value };
+                gameData.Games.Add(game);
+                gameData.SaveChanges();
+            }
+                return RedirectToAction("PlacePieces", new { id = model.GameId });
         }
 
         [HttpGet]
         public ActionResult PlacePieces(Guid id)
         {
             //TODO Load the game from the database to make sure it is a real game and ready to place pieces
+            using (var gameData = new MyGameDatabase())
+            {
+                var game = gameData.Games.Where(m => m.GameId == id).Select(m => new { Value = m.GameId, Name = m.GameName });
+            }
             var model = new PlacePiecesViewModel
             {
                 GameId = id,
@@ -43,7 +53,6 @@ namespace Battleship.Controllers
                 }
             };
             ViewBag.Orientations = Enum.GetValues(typeof(ShipOrientationEnum));
-
 
             return View(model);
         }
@@ -64,21 +73,5 @@ namespace Battleship.Controllers
 
             return View();
         }
-
-        //public ActionResult PlayGame
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-                    // use controller to play the game and loop through game logic
-                    // player 1 will fire
-                    // check to see if is hit or miss and record it so it cannot be guessed again
-                    // report this information back to player
-                    // let player 1 end turn
-                    // let AI make its turn / player 1 cannot play at this point
-                    // mark on player 1 side either a hit or miss from AI and record it so AI cannot guess these coordinates again
-                    // end AI turn
-        //    }
-        //}
-
     }
 }

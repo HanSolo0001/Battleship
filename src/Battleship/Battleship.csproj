@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -167,11 +169,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameStateEntity.cs" />
     <Compile Include="Models\GameStartViewModel.cs" />
     <Compile Include="Models\GameViewModelBase.cs" />
     <Compile Include="Models\PieceViewModel.cs" />
     <Compile Include="Models\PlacePiecesViewModel.cs" />
+    <Compile Include="Models\PlayerMove.cs" />
+    <Compile Include="MyGameDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +213,7 @@
     <Content Include="Views\Battleship\Index.cshtml" />
     <Content Include="Views\Battleship\StartGame.cshtml" />
     <Content Include="Views\Battleship\PlacePieces.cshtml" />
+    <Content Include="Views\Battleship\MakeMove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

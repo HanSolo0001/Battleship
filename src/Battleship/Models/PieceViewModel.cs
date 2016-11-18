@@ -8,6 +8,8 @@ namespace Battleship.Models
 {
     public class PieceViewModel
     {
+        public PieceViewModel() { }
+
         public PieceViewModel(ShipEnum ship)
         {
             // Place the different ships using an enum and a switch statement
