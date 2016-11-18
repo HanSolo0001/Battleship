@@ -25,7 +25,8 @@ namespace Battleship
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid GameId { get; set; }
-        //public List<Enum> Ships { get; set; }
+        public string Name { get; set; }
+        public int Size { get; set; }
         // List every game square (10x10 grid) from left to right starting at top left corner
         public bool GameSquare1 { get; set; }
         public bool GameSquare2 { get; set; }

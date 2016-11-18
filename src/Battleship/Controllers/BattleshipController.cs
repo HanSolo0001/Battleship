@@ -55,13 +55,6 @@ namespace Battleship.Controllers
             };
             ViewBag.Orientations = Enum.GetValues(typeof(ShipOrientationEnum));
 
-            //// Save pieces so it can be POSTed to the StartGame action
-            //using (var gameData = new MyGameDatabase())
-            //{
-            //    var game = new Game { Ships = model.Pieces };
-            //    gameData.Games.Add(game);
-            //    gameData.SaveChanges();
-            //}
 
             return View(model);
         }
@@ -72,6 +65,14 @@ namespace Battleship.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            //// Save pieces so it can be POSTed to the StartGame action
+            using (var gameData = new MyGameDatabase())
+            {
+                var game = new Game { Name = PieceViewModel.CarrierShipName, Size = PieceViewModel.CarrierShipSize };
+                gameData.Games.Add(game);
+                gameData.SaveChanges();
+            }
+
             return RedirectToAction("StartGame", new { id = model.GameId });
         }
 
@@ -79,6 +80,12 @@ namespace Battleship.Controllers
         public ActionResult StartGame(Guid id)
         {
             //TODO Make sure all of the game pieces have been placed, send back if not
+            using (var gameData = new MyGameDatabase())
+            {
+                var game = gameData.Games.Where(m => m.GameId == id).Select(m => new { Value = m.GameId, GameName = m.GameName, Name = PieceViewModel.CarrierShipName, Size = PieceViewModel.CarrierShipSize });
+
+                return View(game);
+            }
 
             return View();
         }
