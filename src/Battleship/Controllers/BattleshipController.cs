@@ -21,24 +21,33 @@ namespace Battleship.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            //TODO Save the game to a database
+            //TODO Save the game to a database and check for a duplicate name
             using (var gameData = new MyGameDatabase())
             {
-                var game = new Game { GameName = model.GameName, GameId = model.GameId.Value };
-                gameData.Games.Add(game);
-                gameData.SaveChanges();
+                if (gameData.Games.Any(m =>  m.GameName == m.GameName))
+                {
+                    ViewBag.Message = "A game with this name already exists!";
+                }
+                else
+                {
+                    var game = new Game { GameName = model.GameName, GameId = model.GameId.Value };
+                    gameData.Games.Add(game);
+                    gameData.SaveChanges();
+                }             
             }
            
             return RedirectToAction("PlacePieces", new { id = model.GameId });
         }
 
         [HttpGet]
-        public ActionResult PlacePieces(Guid id)
+        public ActionResult PlacePieces(Guid id, string name)
         {
             //TODO Load the game from the database to make sure it is a real game and ready to place pieces
             using (var gameData = new MyGameDatabase())
             {
-                var game = gameData.Games.Where(m => m.GameId == id).Select(m => new { Value = m.GameId, Name = m.GameName });
+                var game = gameData.Games.Where(m => m.GameId == id &&
+                                                     m.GameName == name)
+                                         .Select(m => new { Value = m.GameId, Name = m.GameName });
             }
             var model = new PlacePiecesViewModel
             {
@@ -65,13 +74,13 @@ namespace Battleship.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            //// Save pieces so it can be POSTed to the StartGame action
-            using (var gameData = new MyGameDatabase())
-            {
-                var game = new Game { Name = PieceViewModel.CarrierShipName, Size = PieceViewModel.CarrierShipSize };
-                gameData.Games.Add(game);
-                gameData.SaveChanges();
-            }
+            // Save pieces so it can be POSTed to the StartGame action
+            //using (var gameData = new MyGameDatabase())
+            //{
+            //    var game = new Game { Name = PieceViewModel.BattleshipName, Size = PieceViewModel.BattleshipSize, X = mo };
+            //    gameData.Games.Add(game);
+            //    gameData.SaveChanges();
+            //}
 
             return RedirectToAction("StartGame", new { id = model.GameId });
         }
@@ -80,12 +89,16 @@ namespace Battleship.Controllers
         public ActionResult StartGame(Guid id)
         {
             //TODO Make sure all of the game pieces have been placed, send back if not
-            using (var gameData = new MyGameDatabase())
-            {
-                var game = gameData.Games.Where(m => m.GameId == id).Select(m => new { Value = m.GameId, GameName = m.GameName, Name = PieceViewModel.CarrierShipName, Size = PieceViewModel.CarrierShipSize });
+            //using (var gameData = new MyGameDatabase())
+            //{
+            //    var game = gameData.Games.().Select(m => new { Value = m.GameId, GameName = m.GameName });
 
-                return View(game);
-            }
+            //    if(game != null)
+            //    {
+            //        return View(game);
+            //    }
+                
+            //}
 
             return View();
         }

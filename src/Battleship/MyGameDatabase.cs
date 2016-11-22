@@ -23,10 +23,12 @@ namespace Battleship
     {
         public string GameName { get; set; }
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid GameId { get; set; }
         public string Name { get; set; }
         public int Size { get; set; }
+        public int X { get; set; }
+        public int Y { get;  set;}
         // List every game square (10x10 grid) from left to right starting at top left corner
         public bool GameSquare1 { get; set; }
         public bool GameSquare2 { get; set; }
